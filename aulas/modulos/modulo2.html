@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="CtrlModulo">
+    Meu nome é {{nome}}
+</div>
+
+<script>
+    var myApp = angular.module('app', []);
+
+    var CtrlModulo = function(s) {
+        s.nome = "James";
+
+    };
+
+    // injetando a dependência - s é um scope
+    CtrlModulo.$inject = ['$scope'];
+
+    myApp.controller('CtrlModulo', CtrlModulo);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+</head>
+<body>
+
+<!-- criando o filtro -->
+Busca: <input type="search" ng-model="busca">
+
+<div ng-controller="CtrlLista">
+    <ul>
+        <!-- ligou a lista ao filtro -->
+        <li ng-repeat="pessoa in pessoas | filter:busca">
+            {{ pessoa.nome }}, {{ pessoa.cidade }}
+        </li>
+    </ul>
+</div>
+
+<script>
+    var myApp = angular.module('app', []);
+    var CtrlLista = function($scope) {
+        $scope.pessoas = [
+            {nome: "Maria", cidade: "São Paulo"},
+            {nome: "João", cidade: "São Salvador"},
+            {nome: "Tico", cidade: "Curitiba"},
+            {nome: "Marta", cidade: "Pirapora"},
+        ];
+    };
+    myApp.controller('CtrlLista', CtrlLista);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+</head>
+<body>
+
+<!-- criando o filtro -->
+Busca: <input type="search" ng-model="busca">
+
+<div ng-controller="CtrlLista">
+
+    <!-- Total de elementos da lista -->
+    <div>Total: <b>{{ pessoas.length }}</b> </div>
+
+    <ul>
+        <!-- ligou a lista ao filtro -->
+        <li ng-repeat="pessoa in pessoas | filter:busca">
+            <!-- passando um paramentro index para a função de remover -->
+            {{ pessoa.nome }}, {{ pessoa.cidade }} <button ng-click="remover($index)">Remover</button>
+        </li>
+    </ul>
+
+
+    <div>
+        Nome: <input type="text" ng-model="vNome">
+        <br>
+        Cidade: <input type="text" ng-model="vCidade">
+        <br>
+        <button ng-click="adicionar()">Adicionar a lista</button>
+    </div>
+
+</div>
+
+<script>
+    var myApp = angular.module('app', []);
+    var CtrlLista = function($scope) {
+        $scope.pessoas = [
+            {nome: "Maria", cidade: "São Paulo"},
+            {nome: "João", cidade: "São Salvador"},
+            {nome: "Tico", cidade: "Curitiba"},
+            {nome: "Marta", cidade: "Pirapora"},
+        ];
+
+        $scope.adicionar = function() {
+            $scope.pessoas.push({
+                nome: $scope.vNome,
+                cidade: $scope.vCidade
+            });
+            $scope.vNome = "";
+            $scope.vCidade = "";
+        }
+
+        <!-- splice remove a partir do indice que se quer, a quantidade de elementos -->
+        $scope.remover = function(index) {
+            $scope.pessoas.splice(index, 1);
+        };
+    };
+    myApp.controller('CtrlLista', CtrlLista);
+</script>
+
+</body>
+</html>

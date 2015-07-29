@@ -1,0 +1,23 @@
+<!doctype html>
+<html ng-app="MeuModulo">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="CtrlModulo">
+    Meu nome é {{nome}}
+</div>
+
+<script>
+    var myApp = angular.module('MeuModulo', [])
+       // s depende de scope - pode ser qualquer outra coisa
+      .controller('CtrlModulo', ['$scope', function(s){
+        s.nome = "James";
+      }]) ;
+
+
+</script>
+
+</body>
+</html>

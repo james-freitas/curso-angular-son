@@ -1,0 +1,40 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="CtrlApp">
+    <input type="text" ng-model="nome" />
+    <h1>{{nome}} - {{idade}}, {{cidade}}</h1>
+</div>
+
+<div ng-controller="CtrlApp2">
+    <h1>{{nome}} - {{idade}}, {{cidade}}</h1>
+</div>
+
+
+<script>
+    var myApp = angular.module('app', []);
+    var CtrlApp = function($scope) {
+        $scope.nome = "James";
+        $scope.idade = 35;
+        $scope.cidade = "Rio de Janeiro";
+        $scope.$watch('nome', function(){
+           console.log('Oi ' + $scope.nome);
+        });
+    }
+
+    var CtrlApp2 = function($scope) {
+        $scope.nome = "James";
+        $scope.idade = 36;
+        $scope.cidade = "Campos";
+    }
+    myApp.controller('CtrlApp', CtrlApp);
+    myApp.controller('CtrlApp2', CtrlApp2);
+
+</script>
+
+</body>
+</html>
