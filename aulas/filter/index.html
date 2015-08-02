@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="CtrlApp">
+    <!-- Para colocar em maiuscula so utilizar um pipe upper, agora parametrizando-->
+    <h1>{{frase | case: 'upper'}}</h1>
+</div>
+
+<script>
+    angular.module('App',[])
+            // filtro personalizado
+            .filter('upper', function(){
+                return function(input){
+                    return input.toUpperCase();
+                }
+            })
+            .filter('lower', function(){
+                return function(input){
+                    return input.toLowerCase();
+                }
+            })
+            .filter('case', function(){
+                // o segundo parâmetro é o valor que se está passando no filtro na entrada de dados
+                return function(input, tipo) {
+                    if(tipo === 'upper'){
+                        return input.toUpperCase();
+                    } else {
+                        return input.toLowerCase();
+                    }
+                }
+            })
+
+            .controller('CtrlApp', function($scope) {
+                $scope.frase = "Olá, meu nome é James";
+            });
+</script>
+
+</body>
+</html>

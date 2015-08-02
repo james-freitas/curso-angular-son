@@ -13,10 +13,6 @@ angular
             .when('/pessoa/:index', {
                 templateUrl: 'editar.html',
                 controller: 'CtrlEditar'
-            })
-            .when('/pessoa/:index', {
-                templateUrl: 'listar.html',
-                controller: 'CtrlExcluir'
             });
     })
 
@@ -28,6 +24,9 @@ angular
            {nome: "João", cidade: "Parnaíba"},
            {nome: "Cleber", cidade: "Barueri"}
        ];
+        $scope.remove = function(index) {
+            $scope.pessoas.splice(index, 1);
+        }
     })
 
 
@@ -44,13 +43,7 @@ angular
 
     .controller('CtrlEditar', function($scope, $routeParams) {
         $scope.pessoa = $scope.pessoas[$routeParams.index];
-    })
+    });
 
-    .controller('CtrlExcluir', function($scope, $routeParams) {
-        $scope.remove = function(index) {
-            $scope.pessoas.splice(index, 1);
-        };
 
-    })
-;
 
